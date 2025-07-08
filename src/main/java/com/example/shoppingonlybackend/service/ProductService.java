@@ -45,4 +45,19 @@ public class ProductService {
         productRepository.delete(product);
         return true;
     }
+    
+    // Native query: isme göre arama
+    public List<Product> searchProductsByNameNative(String keyword) {
+        return productRepository.searchProductsByNameNative(keyword);
+    }
+
+    // Belirli bir fiyattan daha pahalı ürünleri getir
+    public List<Product> getProductsMoreExpensiveThan(double price) {
+        return productRepository.findByPriceGreaterThan(price);
+    }
+       
+    // Açıklamasında kelime geçen ürünleri getir (JPQL)
+    public List<Product> searchProductsByDescription(String keyword) {
+        return productRepository.searchByDescription(keyword);
+    }    
 }
