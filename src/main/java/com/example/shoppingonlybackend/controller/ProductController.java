@@ -68,4 +68,25 @@ public class ProductController {
         }
         return ResponseEntity.notFound().build();
     }
+    
+    @PreAuthorize("hasRole('MEMBER') or hasRole('ADMIN')")
+    @GetMapping("/searchByName")
+    public ResponseEntity<?> searchByName(@RequestParam String keyword) {
+        List<Product> products = productService.searchProductsByName(keyword);
+        return ResponseEntity.ok(products);
+    }
+
+    @PreAuthorize("hasRole('MEMBER') or hasRole('ADMIN')")
+    @GetMapping("/moreExpensiveThan")
+    public ResponseEntity<?> getProductsMoreExpensiveThan(@RequestParam double price) {
+        List<Product> products = productService.getProductsMoreExpensiveThan(price);
+        return ResponseEntity.ok(products);
+    }
+
+    @PreAuthorize("hasRole('MEMBER') or hasRole('ADMIN')")
+    @GetMapping("/searchByDescription")
+    public ResponseEntity<?> searchByDescription(@RequestParam String keyword) {
+        List<Product> products = productService.searchProductsByDescription(keyword);
+        return ResponseEntity.ok(products);
+    }
 }
