@@ -74,6 +74,9 @@ public class ProductController {
     public ResponseEntity<?> searchByName(@RequestParam String keyword) {
 
         List<Product> products = productService.searchProductsByName(keyword);
+        if (products.isEmpty())
+                return ResponseEntity.noContent();
+
         return ResponseEntity.ok(products);
     }
 
