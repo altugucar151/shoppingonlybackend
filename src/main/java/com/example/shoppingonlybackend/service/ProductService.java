@@ -45,4 +45,17 @@ public class ProductService {
         productRepository.delete(product);
         return true;
     }
+    
+    public List<Product> searchProductsByName(String keyword) {
+        return productRepository.findByNameContaining(keyword);
+    }
+
+    public List<Product> getProductsMoreExpensiveThan(double price) {
+        return productRepository.findByPriceGreaterThan(price);
+    }
+
+    
+    public List<Product> searchProductsByDescription(String keyword) {
+        return productRepository.searchByDescription(keyword);
+    }    
 }
