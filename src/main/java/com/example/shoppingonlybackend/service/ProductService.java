@@ -53,7 +53,6 @@ public class ProductService {
     public List<Product> getProductsMoreExpensiveThan(double price) {
         return productRepository.findByPriceGreaterThan(price);
     }
-
     
     public List<Product> searchProductsByDescription(String keyword) {
         return productRepository.searchByDescription(keyword);
