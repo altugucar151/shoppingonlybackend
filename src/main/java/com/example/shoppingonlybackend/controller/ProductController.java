@@ -69,28 +69,36 @@ public class ProductController {
         return ResponseEntity.notFound().build();
     }
     
+    // Member veya Admin erişebilir
     @PreAuthorize("hasRole('MEMBER') or hasRole('ADMIN')")
     @GetMapping("/searchByName")
     public ResponseEntity<?> searchByName(@RequestParam String keyword) {
-
-        List<Product> products = productService.searchProductsByName(keyword);
-        if (products.isEmpty())
-                return ResponseEntity.noContent();
-
+        List<Product> products = productService.searchProductsByNameNative(keyword);
+        if (products == null || products.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(products);
     }
-
+    
+    // Member veya Admin erişebilir
     @PreAuthorize("hasRole('MEMBER') or hasRole('ADMIN')")
     @GetMapping("/moreExpensiveThan")
     public ResponseEntity<?> getProductsMoreExpensiveThan(@RequestParam double price) {
         List<Product> products = productService.getProductsMoreExpensiveThan(price);
+        if (products == null || products.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(products);
     }
 
+    // Member veya Admin erişebilir
     @PreAuthorize("hasRole('MEMBER') or hasRole('ADMIN')")
     @GetMapping("/searchByDescription")
     public ResponseEntity<?> searchByDescription(@RequestParam String keyword) {
         List<Product> products = productService.searchProductsByDescription(keyword);
+        if (products == null || products.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(products);
     }
 }
