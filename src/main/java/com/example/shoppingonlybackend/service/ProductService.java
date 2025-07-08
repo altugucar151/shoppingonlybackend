@@ -46,8 +46,9 @@ public class ProductService {
         return true;
     }
     
-    public List<Product> searchProductsByName(String keyword) {
-        return productRepository.findByNameContaining(keyword);
+    // Native query: isme göre arama
+    public List<Product> searchProductsByNameNative(String keyword) {
+        return productRepository.searchProductsByNameNative(keyword);
     }
 
     public List<Product> getProductsMoreExpensiveThan(double price) {
