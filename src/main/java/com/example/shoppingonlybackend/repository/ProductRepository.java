@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProductRepository  extends JpaRepository<Product, Integer> {
+
        List<Product> findByNameContaining(String keyword);
 
        List<Product> findByPriceGreaterThan(double price);
