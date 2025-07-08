@@ -10,8 +10,8 @@ public interface ProductRepository  extends JpaRepository<Product, Integer> {
 
        List<Product> findByNameContaining(String keyword);
 
-       List<Product> findByPriceGreaterThan(double price);
+       List<Product> findByPriceGreaterThan(Double price);
 
        @Query("SELECT p FROM Product p WHERE p.description LIKE %:keyword%")
-       List<Product> searchByDescriptionByDescription(String keyword);
+       List<Product> searchByDescription(String keyword);
 }
